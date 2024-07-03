@@ -8,12 +8,12 @@ from users.models import User
 class HabitApiTestCase(APITestCase):
 
     def setUp(self) -> None:
-        user = User.objects.create(email='tester@tester.ertest', is_active=True)
-        user.set_password('test_pw')
+        user = User.objects.create(email='admin@arsolex.de', is_active=True)
+        user.set_password('12345')
         user.save()
         response = self.client.post(
             '/users/token/',
-            data={"email": "ester@tester.ertest", "password": "test_pw"})
+            data={"email": "admin@arsolex.de", "password": "12345"})
         self.token = response.json()["access"]
 
         self.user = user
