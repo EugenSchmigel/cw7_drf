@@ -8,5 +8,5 @@ app_name = UsersConfig.name
 
 urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('create_user/', UserCreateAPIView.as_view(),  name='create_user')
+    path('create/', UserCreateAPIView.as_view(),  name='create_user')
 ]
