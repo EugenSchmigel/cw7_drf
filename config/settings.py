@@ -28,8 +28,7 @@ SECRET_KEY = 'django-insecure-n8ce9uc@7t_w*&+yadrjvibq4!a6!hfme@zy_+2%ho^wg@g$=l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
 
 # Application definition
 
@@ -90,9 +89,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'habits',
-        'USER': 'postgres',
-        'PASSWORD': '12345'
+        # 'NAME': 'habits',
+        # 'USER': 'postgres',
+        # 'PASSWORD': '12345'
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_PORT')
     }
 }
 
@@ -171,6 +175,7 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
+
 
 CORS_ALLOWED_ORIGINS = [
     'https://127.0.0.1:8000',
